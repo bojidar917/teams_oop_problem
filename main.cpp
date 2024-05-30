@@ -54,6 +54,18 @@ void checkPeople()
 
 int main()
 {
+    //The idea explained:
+    //First, I choose to derive the Group class, because I understood the assignment like: team "is a" group
+    //Second, my idea was to structure all the information about team members in pairs. This way we can
+    //set hierarchy of managers and workers. I was discussing (with myself) two other options:
+    //1. save "boss" pointer to each Person (new class member). This way every person would know his boss
+    //2. make new groups and save each relationship there. (Something like dictionary, but it was too much worl)
+    //if there is better way (probably there is way better ways than mine), please note that in the comments
+    //Known problems with this solution: I think it is not that memory efficient, because we pass constantly
+    //different types from left to right, and there are probably many
+    //problems with the exception handling.
+
+
     // checkPeople(); //works fine
     // testGroup() //works fine
     testTeams(); // works fine
