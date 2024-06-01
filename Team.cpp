@@ -10,7 +10,7 @@ Team::Team() : Group(), pairs(nullptr), size(0), capacity(0)
 
 Team::Team(const Team &other) : Team()
 {
-    clear();
+    copy(other);
 }
 
 Team &Team::operator=(const Team &other)
@@ -44,7 +44,8 @@ bool Team::operator()(const Person &person1, const Person &person2)
         }
         return true;
     }
-    else throw std::invalid_argument("both people must be at the team");
+    // else throw std::invalid_argument("both people must be at the team");
+    else return false;
 
     // return false;
 }
@@ -68,7 +69,7 @@ void Team::copy(const Team &other)
     this->size = other.size;
     this->capacity = other.capacity;
 
-    this->pairs = new Pair[this->size];
+    this->pairs = new Relation[this->size];
     for (int i = 0; i < this->size; i++)
     {
         this->pairs[i] = other.pairs[i];
@@ -81,7 +82,7 @@ void Team::resize()
         this->capacity = 1;
 
     this->capacity += this->capacity*2 + 1;
-    Pair* temp = new Pair[this->capacity];
+    Relation* temp = new Relation[this->capacity];
     for (int i = 0; i < this->size; i++)
     {
         temp[i] = this->pairs[i];
@@ -95,7 +96,7 @@ void Team::makeNewPair(const Person &person1, const Person &person2)
     if(this->size == this->capacity)
         resize();
 
-    Pair newPair(person1, person2);
+    Relation newPair(person1, person2);
     this->pairs[this->size++] = newPair;
 }
 

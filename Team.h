@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Group.h"
-#include "Pair.h"
+#include "Relation.h"
 
 class Team : public Group
 {
@@ -16,7 +16,7 @@ public:
     void printRelations() const;
 
 private:
-    Pair* pairs;
+    Relation* pairs;
     int size;
     int capacity;
 

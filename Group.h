@@ -34,8 +34,9 @@ private: // methods
     void resize();
 
     bool checkEgn(const Person& groupPerson, const Person& otherPerson) const;
-    bool checkPersonInGroup(const char* egn) const;
-    void addPerson(const Person& newP);
-    void removePerson(const char* egn);
+    bool checkPersonInGroup(const Person& person) const;
+    bool findPersonByEGN(const char* egn) const;
+    bool addPerson(const Person& newP);
+    bool removePerson(const char* egn);
 
 };

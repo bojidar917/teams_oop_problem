@@ -2,11 +2,11 @@
 
 #include "Person.h"
 
-class Pair
+class Relation
 {
 public:
-    Pair();
-    Pair(const Person& p1, const Person& p2);
+    Relation();
+    Relation(const Person& p1, const Person& p2);
 
     const Person& getEmployee() const {return this->employee;}
 

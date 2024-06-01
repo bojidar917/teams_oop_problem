@@ -1,22 +1,22 @@
-#include "Pair.h"
+#include "Relation.h"
 
 #include <iostream>
 
-Pair::Pair()
+Relation::Relation()
 {
 }
 
-Pair::Pair(const Person &p1, const Person &p2)
-    : boss(p1), employee(p2)
+Relation::Relation(const Person &boss, const Person &worker)
+    : boss(boss), employee(worker)
 {
 }
 
-void Pair::changeBoss(const Person &newBoss)
+void Relation::changeBoss(const Person &newBoss)
 {
     this->boss = newBoss;
 }
 
-void Pair::print() const
+void Relation::print() const
 {
     std::cout << "Boss ->" << this->boss << "employee -> " << this->employee << std::endl;
     // std::cout << this->employee << std::endl;

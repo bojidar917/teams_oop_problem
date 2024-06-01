@@ -13,7 +13,7 @@ public:
     bool operator==(const char* eng) const;
     bool operator!=(const Person& other) const;
     
-    void validateEgn(const char* egn);
+    void setEgn(const char* egn);
 
     void setFName(const char* fname);
     void setMName(const char* mname);

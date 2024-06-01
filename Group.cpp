@@ -61,7 +61,7 @@ int Group::operator()() const
 
 bool Group::operator()(const Person &person) const
 {
-    return checkPersonInGroup(person.getEgn()); 
+    return checkPersonInGroup(person);
 }
 
 void Group::print() const
@@ -111,7 +111,18 @@ bool Group::checkEgn(const Person &groupPerson, const Person &otherPerson) const
     return groupPerson == otherPerson;
 }
 
-bool Group::checkPersonInGroup(const char *egn) const
+bool Group::checkPersonInGroup(const Person& person) const
+{
+    for (int i = 0; i < this->size; i++)
+    {
+        if(this->people[i] == person)
+            return true;
+    }
+    
+    return false;
+}
+
+bool Group::findPersonByEGN(const char *egn) const
 {
     for (int i = 0; i < this->size; i++)
     {
@@ -122,20 +133,21 @@ bool Group::checkPersonInGroup(const char *egn) const
     return false;
 }
 
-void Group::addPerson(const Person &newP)
+bool Group::addPerson(const Person &newP)
 {
-    if(checkPersonInGroup(newP.getEgn()))
-        throw std::invalid_argument("Person is already in the group");
+    if(checkPersonInGroup(newP))
+        return false;
     
     if(this->size == this->capacity)
         resize();
 
     this->people[this->size++] = newP;
+    return true;
 }
 
-void Group::removePerson(const char *egn)
+bool Group::removePerson(const char *egn)
 {
-    if(!checkPersonInGroup(egn))
+    if(!findPersonByEGN(egn))
         throw std::invalid_argument("person with this egn is not in the grouo");
     int index = -1;
     for (int i = 0; i < this->size; i++)
@@ -151,5 +163,7 @@ void Group::removePerson(const char *egn)
             this->people[i] = this->people[i+1];
         }
         this->size--;
+        return true;
     }
+    return false;
 }

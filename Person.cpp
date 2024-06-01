@@ -4,7 +4,7 @@
 
 #include "Person.h"
 
-Person::Person()
+Person::Person() :firstName("/0"), middleName("/0"), lastName("/0"), egn("/0")
 {
 }
 
@@ -12,14 +12,15 @@ Person::Person(const char *fname, const char *mname, const char *lname, const ch
 {
     try
     {
-        validateEgn(egn);
+        setEgn(egn);
         setFName(fname);
         setMName(mname);
         setLName(lname);
     } 
-    catch(const std::invalid_argument e)
+    catch(const std::invalid_argument& e)
     {
         // how to display properly error messages when I catch them ???
+        throw;
     }    
 }
 
@@ -27,7 +28,7 @@ Person::Person(const char* fname, const char* lname, const char* egn)
 {
     try
     {
-        validateEgn(egn);
+        setEgn(egn);
         setFName(fname);
         setLName(lname);
     } 
@@ -52,7 +53,7 @@ bool Person::operator!=(const Person &other) const
     return !(*this == other);
 }
 
-void Person::validateEgn(const char* egn)
+void Person::setEgn(const char* egn)
 { 
     if(strlen(egn) < 10 || strlen(egn) > 11)
         throw std::invalid_argument("egn must be exactly 10 characters");
